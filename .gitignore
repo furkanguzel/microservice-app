@@ -1,3 +1,14 @@
-# Project exclude paths
-/account-service/target/
-/config-server/target/
+*.iml
+*.ipr
+*.iws
+*.log
+
+.classpath
+.project
+.idea
+.vscode
+.settings
+.gradle
+classes
+dataSources
+.ideaDataSources
