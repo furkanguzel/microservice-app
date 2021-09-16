@@ -2,7 +2,6 @@ package com.furkanguzel.ticketservice.model;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.Date;
