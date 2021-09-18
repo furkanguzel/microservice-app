@@ -1,5 +1,7 @@
 package com.furkanguzel.ticketservice.service;
 
+import com.furkanguzel.client.AccountServiceClient;
+import com.furkanguzel.client.contractdto.AccountDto;
 import com.furkanguzel.ticketservice.dto.TicketDto;
 import com.furkanguzel.ticketservice.model.PriorityType;
 import com.furkanguzel.ticketservice.model.Ticket;
@@ -11,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +24,7 @@ public class TicketServiceImpl implements TicketService{
     private final TicketElasticRepository ticketElasticRepository;
     private final TicketRepository ticketRepository;
     private final ModelMapper modelMapper;
+    private final AccountServiceClient accountServiceClient;
 
     @Override
     @Transactional
@@ -28,8 +32,9 @@ public class TicketServiceImpl implements TicketService{
         //Ticket Entity
         Ticket ticket = new Ticket();
         //TODO validate from Account Api
+        ResponseEntity<AccountDto> accountDtoResponseEntity = accountServiceClient.get(ticketDto.getAssignee());
 
-        if(ticketDto.getDescription() == null)
+        if (ticketDto.getDescription() == null)
             throw new IllegalArgumentException("Description cannot be empty!");
 
         ticket.setDescription((ticketDto.getDescription()));
@@ -37,6 +42,7 @@ public class TicketServiceImpl implements TicketService{
         ticket.setTicketDate(ticketDto.getTicketDate());
         ticket.setTicketStatus(TicketStatus.valueOf(ticketDto.getTicketStatus()));
         ticket.setPriorityType(PriorityType.valueOf(ticketDto.getPriorityType()));
+        ticket.setAssignee(accountDtoResponseEntity.getBody().getId());
 
         //Save MySQL
         ticket = ticketRepository.save(ticket);
@@ -46,6 +52,7 @@ public class TicketServiceImpl implements TicketService{
                 .description(ticket.getDescription())
                 .notes(ticket.getNotes())
                 .id(ticket.getId())
+                .assignee(accountDtoResponseEntity.getBody().getNameAndSurname())
                 .priorityType(ticket.getPriorityType().getLabel())
                 .ticketStatus(ticket.getTicketStatus().getLabel())
                 .ticketDate(ticket.getTicketDate()).build();

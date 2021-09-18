@@ -1,4 +1,4 @@
-package com.furkanguzel.accountservice.dto;
+package com.furkanguzel.client.contractdto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,5 +20,9 @@ public class AccountDto {
     private String email;
 
     private String birthDate;
+
+    public String getNameAndSurname() {
+        return this.name + " " + this.surname;
+    }
 
 }
