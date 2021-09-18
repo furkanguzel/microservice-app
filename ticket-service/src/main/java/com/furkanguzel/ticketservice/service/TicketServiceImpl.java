@@ -10,7 +10,6 @@ import com.furkanguzel.ticketservice.model.elasticsearch.TicketModel;
 import com.furkanguzel.ticketservice.repository.TicketRepository;
 import com.furkanguzel.ticketservice.repository.elasticsearch.TicketElasticRepository;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,7 @@ public class TicketServiceImpl implements TicketService{
 
     private final TicketElasticRepository ticketElasticRepository;
     private final TicketRepository ticketRepository;
-    private final ModelMapper modelMapper;
+    private final TicketNotificationService ticketNotificationService;
     private final AccountServiceClient accountServiceClient;
 
     @Override
@@ -62,6 +61,9 @@ public class TicketServiceImpl implements TicketService{
 
         // return Object
         ticketDto.setId(ticket.getId());
+
+        // Write notification to the queue.
+        ticketNotificationService.sendToQueue(ticket);
         return ticketDto;
     }
 
