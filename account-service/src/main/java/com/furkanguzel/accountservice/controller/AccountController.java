@@ -1,7 +1,7 @@
 package com.furkanguzel.accountservice.controller;
 
-import com.furkanguzel.accountservice.dto.AccountDto;
 import com.furkanguzel.accountservice.service.AccountService;
+import com.furkanguzel.client.contractdto.AccountDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;

@@ -27,6 +27,7 @@
         <module>config-server</module>
         <module>eureka-server</module>
         <module>ticket-service</module>
+        <module>service-communication</module>
     </modules>
 
     <dependencyManagement>

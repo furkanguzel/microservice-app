@@ -1,8 +1,8 @@
 package com.furkanguzel.accountservice.service;
 
-import com.furkanguzel.accountservice.dto.AccountDto;
 import com.furkanguzel.accountservice.entity.Account;
 import com.furkanguzel.accountservice.repository.AccountRepository;
+import com.furkanguzel.client.contractdto.AccountDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
