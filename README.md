@@ -8,6 +8,8 @@ Spring boot
  Java 11
 
  Cassandra 
+ 
+ Elasticsearch
 
  MySQL
 
@@ -20,8 +22,12 @@ Spring boot
  HystrixDashboard
 
  API Gateway
+ 
+ Postman
+ 
+ RESTful Microservices
 
-,Docker
+ Docker
 
 # Root -> microservice-app
 
