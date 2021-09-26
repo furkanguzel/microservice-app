@@ -3,27 +3,28 @@ Account Ticket Notification Microservices Application
 
 # Tech Stack                                                      
 Spring boot 
-.Java 11
+ Java 11
 
-,Cassandra 
+ Cassandra 
 
-.MySQL
+ MySQL
 
-.RabbitMQ
+ RabbitMQ
 
-,FeignClient
+ FeignClient
 
-,Zipkin
+ Zipkin
 
-,HystrixDashboard
+ HystrixDashboard
 
-,API Gateway
+ API Gateway
 
 ,Docker
 
-#Root -> microservice-app
+# Root -> microservice-app
 
 Modules
+
  account-service
  
  springboot-admin-server
